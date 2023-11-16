@@ -81,28 +81,78 @@ public class ComprobacionNumerica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
-        
+    private void NumPerfecto() {
         int numeroK = Integer.parseInt(txtNumero.getText());
         int SumaK = 0;
+
         for (int i = 1; i < numeroK; i++) {
             if (numeroK % i == 0) {
                 SumaK = SumaK + i;
             }
-            
         }
         if (numeroK == SumaK) {
-                JOptionPane.showMessageDialog(rootPane, "Su Numero " + numeroK + " Si es Perfecto");
-            } else  if (numeroK != SumaK){
-                JOptionPane.showMessageDialog(rootPane, "Su Numero " + numeroK + " no es Perfecto");
-            } else {
+            JOptionPane.showMessageDialog(rootPane, "Su Numero " + numeroK + " Si es Perfecto");
+
+        } else if (numeroK != SumaK) {
+            JOptionPane.showMessageDialog(rootPane, "Su Numero " + numeroK + " no es Perfecto");
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Ingrese Un Numero para ver si es perfecto o no");
+
+        }
+
+    }
+
+    private int[] Primos(int numeroK) {
+        int cantidad = 0;
+
+        for (int i = 2; i <= numeroK; i++) {
+            if (NumPrimo(i)) {
+                cantidad++;
+
             }
+        } 
+        int[] primo = new int[cantidad];
+
+        return primo;
+
+    }
+
+    private boolean NumPrimo(int numeroK) {
+        boolean primo = true;
+
+        if (numeroK < 2) {
+            return false;
+        }
+        for (int i = 2; i < numeroK; i++) {
+            if (numeroK % i == 0) {
+                primo = false;
+
+            }
+
+            break;
+        }
+        if (!primo) {
+            JOptionPane.showMessageDialog(rootPane, "Su numero " + numeroK + " no es primo");
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Su numero " + numeroK + " Si es primo");
+        }
+        return true;
+
+    }
+
+
+    private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
+        int numeroK = Integer.parseInt(txtNumero.getText());
+        NumPerfecto();
+        NumPrimo(numeroK);
+        Primos(numeroK);
+
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
